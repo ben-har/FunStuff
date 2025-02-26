@@ -14,9 +14,9 @@ namespace ZombieGame
         public int Dmg { get { return this.dmg; } set { this.dmg = value; } }
         public int Health { get { return this.health; } set { this.health = value; } }
         public int Speed { get { return this.speed; } set { this.speed = value; } }
-        public string Name { get { return this.name; } set { this.name  = value; } }
+        public string Name { get { return this.name; } set { this.name = value; } }
 
-        public Zombie(int Dmg,int Health, int Speed, string Name)
+        public Zombie(int Dmg, int Health, int Speed, string Name)
         {
             this.dmg = Dmg;
             this.health = Health;
@@ -33,17 +33,17 @@ namespace ZombieGame
             return $"the damage of this zombie is {Dmg}, the health of this zombie is {Health}, the speed of this zombie is {Speed}, the type of zombie this is {Name}";
 
         }
-        
-       
+
+
     }
     public class DmgZombie : Zombie
     {
         private int dmgreduction;
-        public int DmgReduction { get { return this.dmgreduction;} set { this.dmgreduction = value; } }
+        public int DmgReduction { get { return this.dmgreduction; } set { this.dmgreduction = value; } }
 
         public DmgZombie(int Dmg, int Health, int Speed, string Name, int Dmgreduction)
                 : base(Dmg, Health, Speed, Name)
-        { 
+        {
             this.dmgreduction = Dmgreduction;
         }
 
@@ -74,10 +74,10 @@ namespace ZombieGame
 
     }
     public class FastZombie : Zombie
-    { 
-    
+    {
+
         public FastZombie(int Dmg, int Health, int Speed, string name)
-                :base (Dmg, Health, Speed, name)
+                : base(Dmg, Health, Speed, name)
         { }
 
 
@@ -85,28 +85,28 @@ namespace ZombieGame
         {
             return $"the damage of this zombie is {Dmg}, the health of this zombie is {Health}, the speed of this zombie is {Speed}, the type of zombie this is {Name}";
         }
-    
-    
+
+
     }
     public class player
     {
-       private string name;
-       private int playerdmg;
-       private int zomplayer;
-       private int wizplayer;
-       private int healerplayer;
-       private int fastplayer;
-       private int playerbullets;
-        
-       public string Name { get { return this.name; } set { this.name = value; } }
-       public int Playerdmg { get { return this.playerdmg; } set { this.playerdmg = value; } } 
-       public int Zomplayer { get { return this.zomplayer; } set { this.zomplayer = value; } }
-       public int Wizplayer { get { return this.wizplayer; } set { this.wizplayer = value; } }
-       public int Healerplayer { get { return this.healerplayer; } set { this.healerplayer = value; } }
-       public int Fastplayer { get { return this.fastplayer; } set { this.fastplayer = value; } }
-       public int Playerbullets { get { return this.playerbullets; } set { this.playerbullets = value; } }
+        private string name;
+        private int playerdmg;
+        private int zomplayer;
+        private int wizplayer;
+        private int healerplayer;
+        private int fastplayer;
+        private int playerbullets;
 
-       public player(string Name, int Playerdmg, int Zombplayer, int Wizplayer, int Healerplayer, int Fastplayer, int playerbullets)
+        public string Name { get { return this.name; } set { this.name = value; } }
+        public int Playerdmg { get { return this.playerdmg; } set { this.playerdmg = value; } }
+        public int Zomplayer { get { return this.zomplayer; } set { this.zomplayer = value; } }
+        public int Wizplayer { get { return this.wizplayer; } set { this.wizplayer = value; } }
+        public int Healerplayer { get { return this.healerplayer; } set { this.healerplayer = value; } }
+        public int Fastplayer { get { return this.fastplayer; } set { this.fastplayer = value; } }
+        public int Playerbullets { get { return this.playerbullets; } set { this.playerbullets = value; } }
+
+        public player(string Name, int Playerdmg, int Zombplayer, int Wizplayer, int Healerplayer, int Fastplayer, int Playerbullets)
         {
             this.name = Name;
             this.playerdmg = Playerdmg;
@@ -116,19 +116,19 @@ namespace ZombieGame
             this.fastplayer = Fastplayer;
             this.playerbullets = Playerbullets;
         }
-       public override string ToString()
-       {
+        public override string ToString()
+        {
 
             return $"name of the player {Name}, player damage is {Playerdmg},players bullet count is {Playerbullets}, players distance from basic zombie is {Zomplayer}, players distance from wizard zombie is {Wizplayer}, players distance from claric zombie is {Healerplayer}, players distance from runner zombie {Fastplayer}";
-        
-        
-       }
+
+
+        }
     }
     public class program
     {
         public static void Main()
         {
-            Zombie myzombie = new Zombie(1,3,1,"basic zombie");
+            Zombie myzombie = new Zombie(1, 3, 1, "basic zombie");
 
             DmgZombie mydmgzombie = new DmgZombie(1, 3, 1, "wizard zombie", 1);
 
@@ -136,20 +136,65 @@ namespace ZombieGame
 
             FastZombie myspeeder = new FastZombie(1, 1, 3, "runner zombie");
 
-            player myplayer = new player("player one",2,10,10,10,10,10 );
-            
+            player myplayer = new player("player one", 2, 10, 10, 10, 10, 10);
+
 
             Console.WriteLine("Player the zombies are coming do not let them reach your house");
-            
 
-            while (myzombie.Health > 0 && myhealer.Health > 0 && mydmgzombie.Health > 0 && myspeeder.Health > 0) 
+
+            while (myzombie.Health > 0 || myhealer.Health > 0 || mydmgzombie.Health > 0 || myspeeder.Health > 0 || myplayer.Playerbullets > 0 || myplayer.Zomplayer > 0|| myplayer.Wizplayer > 0 || myplayer.Healerplayer > 0 || myplayer.Fastplayer > 0)
             {
                 // needs to be two lose conditions. one of the zombies reaching the player, the player runs out of ammo, 
                 // fix the win condition
                 //add in a option for the player to check all the health values and info for zombies
+                Console.Write("would you like to look at the zombies stats ");
+                bool Menu = bool.Parse(Console.ReadLine());
+
+                if (Menu)
+                {
+                    Console.Write("what menu would you like to look at(basic zombie, wizard zombie, claric zombie, runner zombie, player) ");
+                    string menuSelect = Console.ReadLine();
+                    switch (menuSelect)
+                    {
+                        case "basic zombie":
+                            Console.WriteLine(myzombie.ToString());
+                            break;
+                        case "wizard zombie":
+                            Console.WriteLine(mydmgzombie.ToString());
+                            break;
+                        case "claric zombie":
+                            Console.WriteLine(myhealer.ToString());
+                            break;
+                        case "runner zombie":
+                            Console.WriteLine(myspeeder.ToString());
+                            break;
+                        case "player":
+                            Console.WriteLine(myplayer.ToString());
+                            break;
+                        default : Console.WriteLine("that is not apart of the menu "); break;
+
+
+
+
+
+
+
+
+
+                    }
+
+
+                }
+                else
+                {
+                    Console.Clear();
+
+                }
+
 
                 Console.Write("player you need to shoot a zombie(basic zombie, wizard zombie, claric zombie, runner zombie) ");
                 string input = Console.ReadLine();
+                
 
                 switch (input)
                 {
@@ -160,7 +205,7 @@ namespace ZombieGame
                             myplayer.Playerbullets -= 1;
 
                         }
-                        else 
+                        else
                         {
                             myzombie.Health = myzombie.Health - myplayer.Playerdmg;
                             Console.WriteLine("zombie HP is " + myzombie.Health);
@@ -217,7 +262,7 @@ namespace ZombieGame
 
                         }
                         break;
-                    
+
                     default:
                         Console.WriteLine("what are you aiming at? shoot again ");
                         break;
@@ -226,28 +271,28 @@ namespace ZombieGame
 
 
                 }
-                if(myzombie.Health > 0)
+                if (myzombie.Health > 0)
                 {
                     myplayer.Zomplayer -= myzombie.Speed;
                     Console.WriteLine("the basic zombie is " + myplayer.Zomplayer + " spaces away from you");
-                
+
                 }
                 if (mydmgzombie.Health > 0)
                 {
-                    myplayer.Zomplayer -= mydmgzombie.Speed;
+                    myplayer.Wizplayer -= mydmgzombie.Speed;
                     Console.WriteLine("the wizard zombie is " + myplayer.Wizplayer + " spaces away from you");
 
                 }
                 if (myhealer.Health > 0)
                 {
-                    myplayer.Zomplayer -= myhealer.Speed;
+                    myplayer.Healerplayer -= myhealer.Speed;
                     Console.WriteLine("the healer zombie is " + myplayer.Healerplayer + " spaces away from you");
 
                 }
-                        
+
                 if (myspeeder.Health > 0)
                 {
-                    myplayer.Zomplayer -= myspeeder.Speed;
+                    myplayer.Fastplayer -= myspeeder.Speed;
                     Console.WriteLine("the fast zombie is " + myplayer.Fastplayer + " spaces away from you");
 
                 }
