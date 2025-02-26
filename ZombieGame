@@ -1,7 +1,8 @@
 namespace ZombieGame
-//have 4 classes of zombies 
-// have them "walk " to the other side on a graphic 
-// have the player to be able to choose which zombie to damage
+
+// have them "walk " to the other side on a graphic // might do this later
+// the logic with the damage is messed up ether replace it with a int in the main() or find a way to fix it 
+
 
 {
     public class Zombie
@@ -144,10 +145,13 @@ namespace ZombieGame
 
             while (myzombie.Health > 0 || myhealer.Health > 0 || mydmgzombie.Health > 0 || myspeeder.Health > 0 || myplayer.Playerbullets > 0 || myplayer.Zomplayer > 0|| myplayer.Wizplayer > 0 || myplayer.Healerplayer > 0 || myplayer.Fastplayer > 0)
             {
-                // needs to be two lose conditions. one of the zombies reaching the player, the player runs out of ammo, 
-                // fix the win condition
-                //add in a option for the player to check all the health values and info for zombies
-                Console.Write("would you like to look at the zombies stats ");
+                if (mydmgzombie.Health > 0)
+                {
+                    myplayer.Playerdmg -= 1;
+                }
+                
+
+                    Console.Write("would you like to look at the zombies stats ");
                 bool Menu = bool.Parse(Console.ReadLine());
 
                 if (Menu)
@@ -279,12 +283,16 @@ namespace ZombieGame
                 }
                 if (mydmgzombie.Health > 0)
                 {
+
                     myplayer.Wizplayer -= mydmgzombie.Speed;
                     Console.WriteLine("the wizard zombie is " + myplayer.Wizplayer + " spaces away from you");
 
                 }
                 if (myhealer.Health > 0)
                 {
+                   // myzombie.Health += myhealer.Heal;
+                    //mydmgzombie.Health += myhealer.Heal;
+                    //myspeeder.Health += myhealer.Heal;
                     myplayer.Healerplayer -= myhealer.Speed;
                     Console.WriteLine("the healer zombie is " + myplayer.Healerplayer + " spaces away from you");
 
@@ -296,7 +304,7 @@ namespace ZombieGame
                     Console.WriteLine("the fast zombie is " + myplayer.Fastplayer + " spaces away from you");
 
                 }
-
+                
 
 
             }
