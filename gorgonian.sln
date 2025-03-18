@@ -1,0 +1,84 @@
+namespace gorgonian
+{
+    //randomise the target result between 1 - 200 
+    
+    // ask a player to make a list that could add up to the target number without telling them
+
+    //todo
+    // index a is not looping properly 
+    // add in a bool that will turn off the game when the correct number is inputed
+    // give the user some sort of hint of what it could be
+
+    public class ReCap
+    {
+
+        public int Cap()
+        {
+            List<int> playerInput = new List<int>();
+
+            Random random = new Random();
+
+            int target = random.Next(0, 201);
+
+            // add a while loop that will only turn off when a bool is switched to false
+            //asks for the player to input numbers into a list
+            for (int i = 0; i < 6; i++)
+            {
+                Console.Write($"please input number {i + 1} ");
+                int numbers = int.Parse(Console.ReadLine());
+                playerInput.Add(numbers);
+
+
+
+
+            }
+
+            //have two indexes go through the list untill it finds a match or if no match is found return incorrect and have the user redo the list 
+
+            for (int a = 0; a < playerInput.Count; a++)
+                for(int b = a + 1; b < playerInput.Count; b++)
+                    if (playerInput[a] + playerInput[b] == target)
+                    {
+                        Console.WriteLine($"you guess the target correctly. the correct number was {target} ");
+                        // this is where we will flip the bool to end the program
+                    }
+                    else
+                    {
+                        Console.WriteLine($"a is {playerInput[a]} b is {playerInput[b]}");
+                        Console.WriteLine("you did not hit the target");
+                        //nothing will happen and a new list should be created by the player
+                    }
+            
+
+
+            return target;
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+    }
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            ReCap NoCap = new ReCap();
+
+            Console.WriteLine(NoCap.Cap());
+        }
+    }
+}
