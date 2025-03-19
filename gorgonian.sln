@@ -5,29 +5,32 @@ namespace gorgonian
     // ask a player to make a list that could add up to the target number without telling them
 
     //todo
-    // index a is not looping properly 
+    // index a is not looping properly comment 2 it is working properly your just stupid
     // add in a bool that will turn off the game when the correct number is inputed
     // give the user some sort of hint of what it could be
 
     public class ReCap
     {
 
-        public int Cap()
+        public string Cap()
         {
             List<int> playerInput = new List<int>();
 
             Random random = new Random();
 
-            int target = random.Next(2, 3);
-
-            bool stopping = false;
+            int target = random.Next(2,3);
 
             Console.WriteLine(target);
+            
+            bool turnt = false;
 
+            bool gameState = false;
+            
+            int wrong = 0;
             // add a while loop that will only turn off when a bool is switched to false
             //asks for the player to input numbers into a list
-            if (!stopping)
-            {
+            
+            
                 for (int i = 0; i < 6; i++)
                 {
                     Console.Write($"please input number {i + 1} ");
@@ -35,50 +38,66 @@ namespace gorgonian
                     playerInput.Add(numbers);
 
 
-
+                    Console.Clear();
 
                 }
 
-                //have two indexes go through the list untill it finds a match or if no match is found return incorrect and have the user redo the list 
+            //have two indexes go through the list untill it finds a match or if no match is found return incorrect and have the user redo the list 
 
-                for (int a = 0; a < playerInput.Count; a++)
-                    for (int b = a + 1; b < playerInput.Count; b++)
+            for (int a = 0; a < playerInput.Count; a++)
+                for (int b = a + 1; b < playerInput.Count; b++)
+                    if (!turnt)
+                    {
+                        switch(wrong)
+                        {
+                            case 3:
+                                Console.WriteLine("the wrong counter is at 3");
+                                
+                                break;
+                            case 6:
+                                Console.WriteLine("the wrong counter is at 6");
+                                break;
+                            case 9:
+                                Console.WriteLine("the wrong counter is at 9");
+                                break;
+                            case 10:
+                                Console.WriteLine("you will lose in one turn");
+                                turnt = true;
+                                break;
+                        }
                         if (playerInput[a] + playerInput[b] == target)
                         {
+
                             Console.WriteLine($"you guess the target correctly. the correct number was {target} ");
-                            stopping = true;
+                            turnt = true;
+                            gameState = true;
                             // this is where we will flip the bool to end the program
                         }
                         else
                         {
-                            Console.WriteLine($"a is {playerInput[a]} b is {playerInput[b]}");
-                            Console.WriteLine("you did not hit the target");
-                            //nothing will happen and a new list should be created by the player
+                            Console.WriteLine("wrong");
+                            wrong++;
                         }
+                        
+                    }
+           
+            
+            //will display WIN OR LOSE depending on the bool gameState
+            string GameEnd = " ";
+            if (gameState)
+            {
+                 GameEnd = "VICTORY";
+
+            }
+            else
+            {
+                 GameEnd = "LOSER";
             }
 
-
-            return target;
-
-
-
-
-
-
-
-
-
-
+            return GameEnd;
         }
+   }
 
-
-
-
-
-
-
-
-    }
     public class Program
     {
         static void Main(string[] args)
@@ -89,3 +108,4 @@ namespace gorgonian
         }
     }
 }
+
