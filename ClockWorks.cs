@@ -78,6 +78,7 @@ public class Clock
 
 
             }
+            // a way to fix the negative time is to make it <= 0 instead of ==
             if (MyClock.Second == 0 && MyClock.Minutes == 0 && MyClock.Hours == 0)
             {
                 Console.Beep(2000, 2000);
